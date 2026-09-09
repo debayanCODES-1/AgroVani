@@ -214,7 +214,7 @@ async function createAssistantReply(db, body) {
     farmContext,
     liveContext,
   ].join('\n')
-  const model = process.env.GEMINI_MODEL || 'gemini-3.6-flash'
+  const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash'
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(process.env.GEMINI_API_KEY)}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -258,7 +258,7 @@ async function createGeminiAudioReply(db, body) {
   ].filter(Boolean).join('\n')
   const mimeType = typeof body.mimeType === 'string' && body.mimeType.startsWith('audio/') ? body.mimeType : 'audio/webm'
   const base64 = audioData.includes('base64,') ? audioData.split('base64,')[1] : audioData
-  const model = process.env.GEMINI_MODEL || 'gemini-3.6-flash'
+  const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash'
 
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(process.env.GEMINI_API_KEY)}`, {
     method: 'POST',
@@ -290,7 +290,7 @@ async function createGeminiVisionDiagnosis(body) {
 
   const mimeType = typeof body?.mimeType === 'string' && body.mimeType.startsWith('image/') ? body.mimeType : 'image/jpeg'
   const base64 = imageData.includes('base64,') ? imageData.split('base64,')[1] : imageData
-  const model = process.env.GEMINI_VISION_MODEL || process.env.GEMINI_MODEL || 'gemini-3.6-flash'
+  const model = process.env.GEMINI_VISION_MODEL || process.env.GEMINI_MODEL || 'gemini-2.0-flash'
 
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(process.env.GEMINI_API_KEY)}`, {
     method: 'POST',

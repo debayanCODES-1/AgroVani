@@ -6,6 +6,7 @@ import Link from 'next/link'
 import FarmMapCard from '@/components/farmer/FarmMapCard'
 import BookMachineryCard from '@/components/farmer/BookMachineryCard'
 import LiveKitVoiceAgent from '@/components/farmer/LiveKitVoiceAgent'
+import AgroVaniAssistant from '@/components/farmer/AgroVaniAssistant'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 import { getRecommendationCopy } from '@/lib/i18n/recommendation'
@@ -558,6 +559,8 @@ export default function App() {
                   )}
                   <p className="mt-3 text-xs text-slate-500">{cameraFile ? 'Leaf image ready for diagnosis.' : 'Use the camera or upload a leaf photo to prepare a crop diagnosis.'}</p>
                 </div>
+
+                <AgroVaniAssistant farmId={farm?.id} context={{ stress, residue }} />
               </div>
 
               <FarmMapCard lat={farm?.latitude} lon={farm?.longitude} mode="crop" stressScore={Math.max(diag?.scores?.diurnal || 0, diag?.scores?.night || 0)} title="Crop Health & Stress Map" />

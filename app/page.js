@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Wind, Droplet, Leaf, ArrowRight, Sparkles } from 'lucide-react'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
+import AgroVaniAssistant from '@/components/farmer/AgroVaniAssistant'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 const impactCards = [
@@ -64,6 +65,8 @@ export default function App() {
               Explore the demo dashboard
             </Link>
           </div>
+
+          <AgroVaniAssistant compact />
 
           <div className="grid gap-4 pt-8 sm:grid-cols-3">
             {impactCards.map((card) => {
